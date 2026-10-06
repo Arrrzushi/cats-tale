@@ -1,0 +1,22 @@
+# Unity generated
+My project/[Ll]ibrary/
+My project/[Tt]emp/
+My project/[Ll]ogs/
+My project/[Uu]ser[Ss]ettings/
+My project/[Oo]bj/
+My project/[Bb]uild/
+My project/*.csproj
+My project/*.sln
+My project/*.slnx
+My project/.vs/
+My project/.idea/
+My project/Assets/_Recovery*
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+.DS_Store
+__pycache__/
+
+# web build is published separately (GitHub Pages)
+WebBuild/
+WebBuild_result.txt
