@@ -11,16 +11,23 @@ namespace PawTown.EditorTools
     public static class PawWebBuild
     {
         [MenuItem("PawTown/5. Build Web (WebGL)")]
-        public static void Build()
+        public static void Build() => Build(false);
+
+        /// <summary>Same build with function names embedded, into WebBuildDebug, for reading browser stack traces.</summary>
+        [MenuItem("PawTown/5c. Build Web (debug symbols)")]
+        public static void BuildDebug() => Build(true);
+
+        static void Build(bool debugSymbols)
         {
-            string outDir = Path.GetFullPath(Path.Combine(Application.dataPath, "../../WebBuild"));
+            string outDir = Path.GetFullPath(Path.Combine(Application.dataPath, debugSymbols ? "../../WebBuildDebug" : "../../WebBuild"));
+            PlayerSettings.WebGL.debugSymbolMode = debugSymbols ? WebGLDebugSymbolMode.Embedded : WebGLDebugSymbolMode.Off;
             PlayerSettings.productName = "Cat's Tale";
             PlayerSettings.WebGL.template = "PROJECT:CatsTale";
             PlayerSettings.WebGL.compressionFormat = WebGLCompressionFormat.Gzip;
             PlayerSettings.WebGL.decompressionFallback = true;
             PlayerSettings.WebGL.dataCaching = true;
             PlayerSettings.WebGL.exceptionSupport = WebGLExceptionSupport.ExplicitlyThrownExceptionsOnly;
-            PlayerSettings.WebGL.nameFilesAsHashes = false;
+            PlayerSettings.WebGL.nameFilesAsHashes = true;   // new file names every build: a browser can never mix an old cached file with a new one
             PlayerSettings.SetManagedStrippingLevel(UnityEditor.Build.NamedBuildTarget.WebGL, ManagedStrippingLevel.Low);
             ConfigureWebTextures();
 

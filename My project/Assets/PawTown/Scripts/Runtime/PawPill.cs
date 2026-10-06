@@ -12,13 +12,20 @@ namespace PawTown
         void OnEnable() { Fit(); }
         void OnRectTransformDimensionsChange() { Fit(); }
 
+        bool fitting;
+
         void Fit()
         {
+            if (fitting) return;   // the multiplier change can re-trigger a layout pass; never recurse
             if (!img) img = GetComponent<Image>();
             if (!img || !img.sprite) return;
             float h = ((RectTransform)transform).rect.height;
             if (h < 1f) return;
-            img.pixelsPerUnitMultiplier = Mathf.Max(0.01f, img.sprite.rect.height / h);
+            float m = Mathf.Max(0.01f, img.sprite.rect.height / h);
+            if (Mathf.Abs(img.pixelsPerUnitMultiplier - m) < 0.001f) return;
+            fitting = true;
+            img.pixelsPerUnitMultiplier = m;
+            fitting = false;
         }
     }
 }
