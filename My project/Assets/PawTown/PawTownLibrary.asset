@@ -1,0 +1,173 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 360ee3a12c9824f32b66606181b6fb03, type: 3}
+  m_Name: PawTownLibrary
+  m_EditorClassIdentifier: Assembly-CSharp::PawTown.PawTownLibrary
+  tileSize: 24
+  tiles:
+  - name: Grass
+    prefab: {fileID: 5007854348249536323, guid: 695bb35d38f164483a39fbbf426ce7bb, type: 3}
+    road: 0
+    rail: 0
+    river: 0
+    front: 0
+    isLot: 0
+  - name: Lot_Farm
+    prefab: {fileID: 4881172131581680046, guid: 1777b1486eedd49b793ee7edecd2141d, type: 3}
+    road: 0
+    rail: 0
+    river: 0
+    front: 1
+    isLot: 1
+  - name: Lot_Forest
+    prefab: {fileID: 6230010182865436907, guid: ff1bc54f34c6c46e5aca7b0f11c38da7, type: 3}
+    road: 0
+    rail: 0
+    river: 0
+    front: 1
+    isLot: 1
+  - name: Lot_Houses_A
+    prefab: {fileID: 5406442579421598930, guid: 08778649963334b2fb450832ebfaf7e8, type: 3}
+    road: 0
+    rail: 0
+    river: 0
+    front: 1
+    isLot: 1
+  - name: Lot_Houses_B
+    prefab: {fileID: 6105853223654907873, guid: 8a6eecc4ba193403f8eea12f5e5d682a, type: 3}
+    road: 0
+    rail: 0
+    river: 0
+    front: 1
+    isLot: 1
+  - name: Lot_Houses_C
+    prefab: {fileID: 7599326792007062098, guid: ddf4049e0737d4411850e5cc8b8d8fe8, type: 3}
+    road: 0
+    rail: 0
+    river: 0
+    front: 1
+    isLot: 1
+  - name: Lot_HQ
+    prefab: {fileID: 3170261421730451160, guid: 68e13a963f4414f25b6623b0ac30e77a, type: 3}
+    road: 0
+    rail: 0
+    river: 0
+    front: 1
+    isLot: 1
+  - name: Lot_LunaBakery
+    prefab: {fileID: 6802633106056723533, guid: 7c2e264e29a7446e89fd49d0d09b64dd, type: 3}
+    road: 0
+    rail: 0
+    river: 0
+    front: 1
+    isLot: 1
+  - name: Lot_Park
+    prefab: {fileID: 4008154294942740360, guid: 6b4244752eac84c9d8c9035d9319c569, type: 3}
+    road: 0
+    rail: 0
+    river: 0
+    front: 1
+    isLot: 1
+  - name: Lot_Shops
+    prefab: {fileID: 8054368821896340940, guid: b4e674b9375af4a78a828a88df07e8c5, type: 3}
+    road: 0
+    rail: 0
+    river: 0
+    front: 1
+    isLot: 1
+  - name: Rail_RoadCrossing
+    prefab: {fileID: 6673587680963792433, guid: 0769446abe49a4b65aa613648d6c084a, type: 3}
+    road: 5
+    rail: 10
+    river: 0
+    front: 0
+    isLot: 0
+  - name: Rail_Straight
+    prefab: {fileID: 1626017058372934640, guid: 02272d697aa8841a893b2bb2b61305a1, type: 3}
+    road: 0
+    rail: 10
+    river: 0
+    front: 0
+    isLot: 0
+  - name: River_RailBridge
+    prefab: {fileID: 4204857698543899359, guid: 57b763d8f11d0492f97f6f7d6e9baf31, type: 3}
+    road: 0
+    rail: 5
+    river: 10
+    front: 0
+    isLot: 0
+  - name: River_RoadBridge
+    prefab: {fileID: 29338879101308561, guid: a5313cb60604844cbbf780d0d6dc40d1, type: 3}
+    road: 5
+    rail: 0
+    river: 10
+    front: 0
+    isLot: 0
+  - name: River_Straight
+    prefab: {fileID: 3821754718811843204, guid: ab7f017941f06422fafe6f6f25668e9e, type: 3}
+    road: 0
+    rail: 0
+    river: 10
+    front: 0
+    isLot: 0
+  - name: Road_Corner
+    prefab: {fileID: 982878344857689067, guid: 25642f58091d24bd2a686ac26752033e, type: 3}
+    road: 9
+    rail: 0
+    river: 0
+    front: 0
+    isLot: 0
+  - name: Road_Cross
+    prefab: {fileID: 6545494740156406853, guid: 24622a2d209c045f0a7a64eb3896134e, type: 3}
+    road: 15
+    rail: 0
+    river: 0
+    front: 0
+    isLot: 0
+  - name: Road_Crosswalk
+    prefab: {fileID: 2566911878661223973, guid: e8d977945ae52497e84150e9e66647c8, type: 3}
+    road: 5
+    rail: 0
+    river: 0
+    front: 0
+    isLot: 0
+  - name: Road_Roundabout
+    prefab: {fileID: 1467755003595325917, guid: 766bdf4b1e43c4dadb4aa16c2b13d7ab, type: 3}
+    road: 15
+    rail: 0
+    river: 0
+    front: 0
+    isLot: 0
+  - name: Road_Straight
+    prefab: {fileID: 6567829019350581048, guid: 6f36d9ed751de40f18db4209b6b7fa30, type: 3}
+    road: 5
+    rail: 0
+    river: 0
+    front: 0
+    isLot: 0
+  - name: Road_T
+    prefab: {fileID: 6148905935769693192, guid: 794fe45c3bd2c423284d7418d6b1af6f, type: 3}
+    road: 13
+    rail: 0
+    river: 0
+    front: 0
+    isLot: 0
+  backdrop:
+  - {fileID: 3754638778504347822, guid: 574df2f79e62e43248f78a359ff4296c, type: 3}
+  - {fileID: 1246287491757539921, guid: 8268030858d484d3ab1406b94c01f4d1, type: 3}
+  - {fileID: 4210548819920471615, guid: 6357727eca73348549bea21e931e4ec8, type: 3}
+  - {fileID: 68446006873573461, guid: 39659ae634c514e97a7f7e2fe7143dcf, type: 3}
+  - {fileID: 1021202518319204206, guid: 0202ed90423fa43ba9363144e5f7b97f, type: 3}
+  - {fileID: 8691920104452811158, guid: 6ef9ef587a902422a8cc9c67495cdc11, type: 3}
+  ground: {fileID: 2100000, guid: c9cd5c5c7017d466fb8d68c42fabe4ad, type: 2}
+  clouds:
+  - {fileID: 2302720569634864561, guid: 484b2e8eae7844093b64be06e747fcdc, type: 3}
