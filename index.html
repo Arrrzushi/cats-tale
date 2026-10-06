@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Cat's Tale</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+      html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #f6ead6; }
+      #unity-canvas { position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100dvh; display: block; background: #f6ead6; outline: none; }
+      #loader { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+        background: radial-gradient(circle at 50% 40%, #fff7ea 0%, #f6ead6 55%, #ecd6b6 100%); font-family: Fredoka, system-ui, sans-serif; color: #4a3327; z-index: 2; transition: opacity .4s; }
+      #loader h1 { margin: 0 0 6px; font-size: clamp(36px, 7vw, 72px); font-weight: 700; color: #e87a2c; text-shadow: 0 3px 0 #8a3d12; letter-spacing: 1px; }
+      #loader p { margin: 4px 0; font-size: clamp(14px, 2vw, 18px); opacity: .85; text-align: center; padding: 0 16px; }
+      #bar { width: min(420px, 70vw); height: 22px; margin: 22px 0 10px; border-radius: 14px; background: #e3cba8; border: 3px solid #4a3327; overflow: hidden; }
+      #fill { width: 0; height: 100%; background: linear-gradient(#f9a65a, #e87a2c); transition: width .2s; }
+      #keys { margin-top: 14px; font-size: 14px; opacity: .7; }
+      #rotate { display: none; position: fixed; inset: 0; z-index: 3; background: #f6ead6; color: #4a3327; font: 600 22px Fredoka, system-ui, sans-serif;
+        align-items: center; justify-content: center; text-align: center; padding: 24px; }
+      @media (orientation: portrait) and (pointer: coarse) { #rotate { display: flex; } }
+      #err { color: #b3261e; font-weight: 600; }
+    </style>
+  </head>
+  <body>
+    <canvas id="unity-canvas" tabindex="-1"></canvas>
+    <div id="loader">
+      <h1>Cat's Tale</h1>
+      <p>A cozy little courier cat delivering parcels around town</p>
+      <div id="bar"><div id="fill"></div></div>
+      <p id="pct">Loading 0%</p>
+      <p id="keys">WASD / arrows move &middot; Shift run &middot; Space jump &middot; Q / E turn camera &middot; V switch view &middot; or use the on-screen controls</p>
+    </div>
+    <div id="rotate">Turn your phone sideways to play 🐾</div>
+    <script>
+      var canvas = document.querySelector("#unity-canvas");
+      var mobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      var buildUrl = "Build";
+      var loaderUrl = buildUrl + "/WebBuild.loader.js";
+      var config = {
+        arguments: [],
+        dataUrl: buildUrl + "/WebBuild.data.unityweb",
+        frameworkUrl: buildUrl + "/WebBuild.framework.js.unityweb",
+        codeUrl: buildUrl + "/WebBuild.wasm.unityweb",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "DefaultCompany",
+        productName: "Cat's Tale",
+        productVersion: "0.1.0",
+        // cap the render resolution: sharp on every screen without melting laptop GPUs or phones
+        devicePixelRatio: Math.min(window.devicePixelRatio || 1, mobile ? 1.5 : 1.5),
+        showBanner: function (msg, type) { if (type === 'error') document.querySelector("#pct").innerHTML = '<span id="err">' + msg + '</span>'; else console.warn(msg); },
+      };
+      var script = document.createElement("script");
+      script.src = loaderUrl;
+      script.onload = function () {
+        createUnityInstance(canvas, config, function (progress) {
+          document.querySelector("#fill").style.width = (100 * progress) + "%";
+          document.querySelector("#pct").textContent = progress < 0.9 ? "Loading " + Math.round(100 * progress) + "%" : "Waking up Mochi...";
+        }).then(function (unityInstance) {
+          var l = document.querySelector("#loader");
+          l.style.opacity = 0; setTimeout(function () { l.remove(); }, 450);
+          canvas.focus();
+        }).catch(function (message) {
+          document.querySelector("#pct").innerHTML = '<span id="err">' + message + '</span>';
+        });
+      };
+      document.body.appendChild(script);
+      // keep keyboard focus on the game after clicking anywhere
+      window.addEventListener("pointerdown", function () { canvas.focus(); });
+    </script>
+  </body>
+</html>
