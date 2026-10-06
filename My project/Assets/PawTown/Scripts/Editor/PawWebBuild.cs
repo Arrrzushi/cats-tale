@@ -24,7 +24,10 @@ namespace PawTown.EditorTools
             PlayerSettings.SetManagedStrippingLevel(UnityEditor.Build.NamedBuildTarget.WebGL, ManagedStrippingLevel.Low);
             ConfigureWebTextures();
 
-            var scenes = System.Array.ConvertAll(EditorBuildSettings.scenes, s => s.path);
+            // the game is the PawTown demo scene; make it the (only) scene in the build list too
+            const string scene = "Assets/PawTown/Scenes/PawTown_Demo.unity";
+            EditorBuildSettings.scenes = new[] { new EditorBuildSettingsScene(scene, true) };
+            var scenes = new[] { scene };
             var opts = new BuildPlayerOptions { scenes = scenes, locationPathName = outDir, target = BuildTarget.WebGL, options = BuildOptions.None };
             BuildReport r = BuildPipeline.BuildPlayer(opts);
             Debug.Log($"[PawWebBuild] {r.summary.result}: {r.summary.totalErrors} errors, {r.summary.totalSize / (1024f * 1024f):0.0} MB, {r.summary.totalTime} -> {outDir}");
